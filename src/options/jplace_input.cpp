@@ -1,6 +1,6 @@
 /*
     gappa - Genesis Applications for Phylogenetic Placement Analysis
-    Copyright (C) 2017-2022 Lucas Czech
+    Copyright (C) 2017-2025 Lucas Czech
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     Contact:
-    Lucas Czech <lczech@carnegiescience.edu>
-    Department of Plant Biology, Carnegie Institution For Science
-    260 Panama Street, Stanford, CA 94305, USA
+    Lucas Czech <lucas.czech@sund.ku.dk>
+    University of Copenhagen, Globe Institute, Section for GeoGenetics
+    Oster Voldgade 5-7, 1350 Copenhagen K, Denmark
 */
 
 #include "options/jplace_input.hpp"
@@ -88,8 +88,9 @@ CLI::Option* JplaceInputOptions::add_ignore_multiplicities_opt_to_app( CLI::App*
     ignore_multiplicities_option = sub->add_flag(
         "--ignore-multiplicities",
         ignore_multiplicities_,
-        "Set the multiplicity of each pquery to 1.0. The multiplicity is the equvalent of "
-        "abundances for placements, and hence ignored with this flag."
+        "Set the multiplicity of each pquery to 1.0. For phylogenetic placement, the multiplicity "
+        "is the equivalent of read abundances. This flag hence ignores the read abundances, "
+        "treating each pquery as a singleton."
     )->group( "Settings" );
 
     return ignore_multiplicities_option;
