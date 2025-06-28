@@ -469,9 +469,10 @@ void make_wiki_sidebar( WikiOptions const& options )
 
     // Add standard entries
     os << "[Home](../wiki)\n\n";
+    os << "[Colors](../wiki/Colors)\n\n";
     os << "[Citation and References](../wiki/Citation-and-References)\n\n";
-    os << "[General Usage](../wiki/General-Usage)\n\n";
-    os << "[Phylogenetic Placement](../wiki/Phylogenetic-Placement)\n\n";
+    // os << "[General Usage](../wiki/General-Usage)\n\n";
+    // os << "[Phylogenetic Placement](../wiki/Phylogenetic-Placement)\n\n";
 
     // Add submodule lists.
     auto subcomms = get_sorted_subcommands( options.app );

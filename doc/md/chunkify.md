@@ -4,7 +4,7 @@ The command is one of the steps of our data preprocessing pipeline for phylogene
 
 ![Chunkify and Unchunkify Workflow.](https://github.com/lczech/gappa/blob/master/doc/png/workflow_chunkify.png?raw=true)
 
-The produced chunk files are intended to be used with [phylogenetic placement](../wiki/Phylogenetic-Placement) next (after potentially aligning them first to the reference). Using chunks of equal size ensures relatively stable run times for each chunk, so that large datasets can be processed efficiently on a computer cluster. Furthermore, as the chunks only contain unique sequences, compute time is further reduced.
+The produced chunk files are intended to be used for phylogenetic placement next (after potentially aligning them first to the reference). Using chunks of equal size ensures relatively stable run times for each chunk, so that large datasets can be processed efficiently on a computer cluster. Furthermore, as the chunks only contain unique sequences, compute time is further reduced.
 
 After finishing phylogentic placement, the [unchunkify](../wiki/Subcommand:-unchunkify) command then takes the per-chunk placement files as well as the abundance map files produced here, and creates placement files for each of the original input files, with all abundances and original sequences names restored. Thus, the combination of these two commands achieves the same effect as placing each input file separately, but lowers computational cost and maximizes load balancing.
 
