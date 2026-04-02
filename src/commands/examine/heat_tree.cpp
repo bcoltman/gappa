@@ -72,6 +72,15 @@ void setup_heat_tree( CLI::App& app )
     options->color_norm.add_max_value_opt_to_app( sub );
     options->color_norm.add_mask_value_opt_to_app( sub );
 
+    // Add option to add edge nums to node names.
+    sub->add_flag(
+        "--add-edge-nums", options->add_edge_nums,
+        "If set, the `edge_num` value (as defined in the jplace format) is added as a prefix "
+        "to the node names at the distal end of each edge in the output tree. "
+        "This can help to understand where placements and branches are, "
+        "by connecting raw jplace information with the tree visualization."
+    )->group( "Settings" );
+
     // Output files.
     options->file_output.add_default_output_opts_to_app( sub );
     options->tree_output.add_tree_output_opts_to_app( sub );
@@ -210,6 +219,19 @@ void run_heat_tree( HeatTreeOptions const& options )
                 if( v <= 0.0 ) {
                     v = color_norm->min_value() / 2.0;
                 }
+            }
+        }
+    }
+
+    // Add edge nums if requested
+    if( options.add_edge_nums ) {
+        for( auto& node : tree.nodes() ) {
+            auto edge_num = node.primary_edge().data<PlacementEdgeData>().edge_num();
+            auto& name = node.data<PlacementNodeData>().name;
+            if( name.empty() ) {
+                name = std::to_string( edge_num );
+            } else {
+                name = std::to_string( edge_num ) + "_" + name;
             }
         }
     }

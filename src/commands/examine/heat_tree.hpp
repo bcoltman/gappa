@@ -31,6 +31,7 @@
 #include "options/tree_output.hpp"
 #include "options/file_output.hpp"
 #include "options/jplace_input.hpp"
+#include "tools/cli_option.hpp"
 
 #include <memory>
 #include <string>
@@ -49,6 +50,7 @@ public:
     JplaceInputOptions jplace_input;
     FileOutputOptions  file_output;
     TreeOutputOptions  tree_output;
+    bool               add_edge_nums = false;
 };
 
 // =================================================================================================
