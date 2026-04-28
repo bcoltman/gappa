@@ -197,6 +197,14 @@ void run_accumulate( AccumulateOptions const& options )
             auto const bl = tree.edge_at( result_edge ).data<CommonEdgeData>().branch_length;
             assert( masses[ result_edge] >= options.threshold );
             place.proximal_length = bl * masses[ result_edge ];
+
+            // Clamp, to fix potential rounding errors, https://github.com/lczech/gappa/issues/34
+            if( place.proximal_length < 0.0 ) {
+                place.proximal_length = 0.0;
+            }
+            if( place.proximal_length > bl ) {
+                place.proximal_length = bl;
+            }
         } else {
             removal_collector.push_back( i );
         }
